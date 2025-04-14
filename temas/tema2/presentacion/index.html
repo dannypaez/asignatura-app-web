@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Tema 1 – Fundamentos de la Web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h2 { color: #fff; font-size: 1.25em; }
+    p, li { font-size: 0.70em; }
+    pre code {
+      font-size: 0.85em;
+      background: #2d2d2d;
+      color: #eee;
+      padding: 1em;
+      display: block;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Portada -->
+      <section>
+        <h1>Tema 2</h1>
+        <p>JavaScript y Consumo de APIs</p>
+        <p class="text-sm">Aplicaciones Web – Ing. Danny Páez</p>
+      </section>
+
+      <!-- 2.1. Fundamentos de JavaScript (nivel cliente)  -->
+
+      <section>
+        <h2>¿Qué es JavaScript?</h2>
+        <ul>
+          <li  class="fragment">Lenguaje de programación que se ejecuta en el navegador del usuario.</li>
+          <li  class="fragment">Permite crear interactividad: botones, formularios, efectos, etc.</li>
+          <li  class="fragment">Se utiliza junto con HTML y CSS para construir sitios web dinámicos.</li>
+          <li  class="fragment">También puede ejecutarse en el servidor (por ejemplo, con Node.js).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Variables en JavaScript</h2>
+        <ul>
+          <li  class="fragment"><code>let</code>: variable que puede cambiar su valor.</li>
+          <li  class="fragment"><code>const</code>: variable constante, no puede ser reasignada.</li>
+          <li  class="fragment"><code>var</code>: forma antigua, no recomendada en proyectos modernos.</li>
+        </ul>
+        <pre><code class="language-html" data-trim>
+      let nombre = "Danny";
+      const edad = 30;
+      var ciudad = "Quito";
+        </code></pre>
+      </section>
+      
+      <section>
+        <h2>Tipos de datos</h2>
+        <ul>
+          <li  class="fragment"><code>string</code>: cadenas de texto – <code>"Hola"</code></li>
+          <li  class="fragment"><code>number</code>: números – <code>42</code></li>
+          <li  class="fragment"><code>boolean</code>: verdadero o falso – <code>true</code>, <code>false</code></li>
+          <li  class="fragment"><code>array</code>: lista de elementos – <code>[1, 2, 3]</code></li>
+          <li  class="fragment"><code>object</code>: conjunto de propiedades – <code>{ nombre: "Danny", edad: 30 }</code></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Funciones en JavaScript</h2>
+        <p>Las funciones agrupan código que se puede reutilizar.</p>
+        <pre><code class="language-html" data-trim>
+      function saludar(nombre) {
+        console.log("Hola " + nombre);
+      }
+      
+      saludar("Danny");
+        </code></pre>
+        <p>También existen funciones flecha:</p>
+        <pre><code class="language-html" data-trim>
+      const saludar = (nombre) => {
+        console.log(`Hola ${nombre}`);
+      };
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Seleccionar elementos del DOM</h2>
+        <ul>
+          <li  class="fragment"><code>document.getElementById(\"id\")</code></li>
+          <li  class="fragment"><code>document.querySelector(\"selector\")</code></li>
+        </ul>
+        <pre><code class="language-html" data-trim>
+      const titulo = document.getElementById("miTitulo");
+      const boton = document.querySelector(".btn");
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Modificar elementos del DOM</h2>
+        <pre><code class="language-html" data-trim>
+      titulo.innerText = "Nuevo título";
+      boton.style.backgroundColor = "blue";
+      input.value = "Texto por defecto";
+        </code></pre>
+        <p>También puedes crear nuevos elementos con <code>createElement</code> y agregarlos al DOM.</p>
+      </section>
+
+      <section>
+        <h2>Manejo de eventos</h2>
+        <p>Con <code>addEventListener</code> puedes responder a eventos del usuario.</p>
+        <pre><code class="language-html" data-trim>
+      const boton = document.getElementById("btn");
+      
+      boton.addEventListener("click", () => {
+        alert("¡Hiciste clic!");
+      });
+        </code></pre>
+        <ul>
+          <li  class="fragment">Eventos comunes: <code>click</code>, <code>submit</code>, <code>change</code>, <code>input</code></li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>Resumen de 2.1 – Fundamentos JS</h2>
+        <ul>
+          <li  class="fragment">JavaScript permite crear interactividad en sitios web.</li>
+          <li  class="fragment">Se usa para manipular elementos HTML (DOM).</li>
+          <li  class="fragment">Variables, funciones y eventos son pilares esenciales.</li>
+          <li  class="fragment">Es la base para consumir APIs y construir aplicaciones dinámicas.</li>
+        </ul>
+      </section>
+
+      
+      <!-- 2.2. Introducción a las APIs REST -->
+
+      <section>
+        <h2>¿Qué es una API?</h2>
+        <ul>
+          <li  class="fragment"><strong>API</strong> significa <em>Application Programming Interface</em>.</li>
+          <li  class="fragment">Es un intermediario que permite que dos sistemas se comuniquen entre sí.</li>
+          <li  class="fragment">Permite enviar y recibir datos desde un servidor a una aplicación web.</li>
+        </ul>
+        <p>Ejemplo: un catálogo que obtiene productos desde un servidor.</p>
+      </section>
+      
+      <section>
+        <h2>¿Qué es REST?</h2>
+        <ul>
+          <li  class="fragment"><strong>REST</strong>: Representational State Transfer</li>
+          <li  class="fragment">Es un estilo de arquitectura para diseñar servicios web.</li>
+          <li  class="fragment">Usa URLs para representar recursos (por ejemplo: <code>/productos</code>).</li>
+          <li  class="fragment">Interactúa con recursos usando métodos HTTP: GET, POST, PUT, DELETE.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Formato JSON</h2>
+        <ul>
+          <li  class="fragment"><strong>JSON</strong> = JavaScript Object Notation.</li>
+          <li  class="fragment">Es un formato ligero para intercambio de datos.</li>
+          <li  class="fragment">Se basa en pares clave-valor.</li>
+        </ul>
+        <pre><code class="language-html" data-trim>
+      {
+        "nombre": "Danny",
+        "edad": 30,
+        "productos": ["Zapato", "Camisa"]
+      }
+        </code></pre>
+      </section>
+      
+      <section>
+        <h2>JSON.parse() y JSON.stringify()</h2>
+        <ul>
+          <li  class="fragment"><code>JSON.parse()</code>: convierte texto JSON a objeto JavaScript.</li>
+          <li  class="fragment"><code>JSON.stringify()</code>: convierte objeto JavaScript a texto JSON.</li>
+        </ul>
+        <pre><code class="language-html" data-trim>
+      const texto = '{ "nombre": "Danny" }';
+      const obj = JSON.parse(texto); // a objeto
+      
+      const nuevoTexto = JSON.stringify(obj); // a string otra vez
+        </code></pre>
+      </section>
+      
+      <section>
+        <h2>Métodos HTTP (REST)</h2>
+        <ul>
+          <li  class="fragment"><code>GET</code>: obtener datos (ej: ver productos)</li>
+          <li  class="fragment"><code>POST</code>: crear un nuevo recurso (ej: agregar producto)</li>
+          <li  class="fragment"><code>PUT</code> / <code>PATCH</code>: actualizar un recurso existente</li>
+          <li  class="fragment"><code>DELETE</code>: eliminar un recurso</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>Códigos de estado HTTP</h2>
+        <ul>
+          <li  class="fragment"><strong>200 OK:</strong> Todo está bien</li>
+          <li  class="fragment"><strong>201 Created:</strong> Recurso creado correctamente</li>
+          <li  class="fragment"><strong>400 Bad Request:</strong> La solicitud está mal formada</li>
+          <li  class="fragment"><strong>401 Unauthorized:</strong> El usuario no tiene permisos</li>
+          <li  class="fragment"><strong>404 Not Found:</strong> El recurso no existe</li>
+          <li  class="fragment"><strong>500 Internal Server Error:</strong> Fallo en el servidor</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>Resumen de 2.2 – APIs REST</h2>
+        <ul>
+          <li  class="fragment">Una API permite que el frontend y el backend se comuniquen.</li>
+          <li  class="fragment">REST organiza los recursos usando rutas y métodos HTTP.</li>
+          <li  class="fragment">Los datos se transmiten usando JSON.</li>
+          <li  class="fragment">Los códigos HTTP indican si la solicitud fue exitosa o fallida.</li>
+        </ul>
+      </section>
+      
+      
+      
+      <!-- 2.3. Consumo de APIs con fetch() -->
+
+      <section>
+        <h2>¿Qué es fetch()?</h2>
+        <ul>
+          <li  class="fragment">Es una función nativa de JavaScript para hacer solicitudes HTTP.</li>
+          <li  class="fragment">Permite conectarse con APIs externas o internas desde el navegador.</li>
+          <li  class="fragment">Devuelve una <strong>promesa</strong> que puede resolverse o fallar.</li>
+        </ul>
+        <p>Ideal para obtener o enviar datos desde y hacia un servidor.</p>
+      </section>
+
+      <section>
+        <h2>fetch() – Solicitud GET</h2>
+        <p>Ejemplo: obtener productos desde una API pública.</p>
+        <pre><code class="language-html" data-trim>
+      fetch('https://fakestoreapi.com/products')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+        </code></pre>
+      </section>
+      
+      <section>
+        <h2>fetch() – Solicitud POST</h2>
+        <p>Ejemplo: enviar datos a una API.</p>
+        <pre><code class="language-html" data-trim>
+      fetch('https://api.example.com/crear', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nombre: 'Danny',
+          producto: 'Laptop'
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Éxito:', data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+        </code></pre>
+      </section>
+      
+      <section>
+        <h2>Manejo de errores con fetch()</h2>
+        <ul>
+          <li  class="fragment">Siempre usar <code>.catch()</code> para capturar errores.</li>
+          <li  class="fragment">Verificar si la respuesta fue exitosa con <code>response.ok</code>.</li>
+        </ul>
+        <pre><code class="language-html" data-trim>
+      fetch('https://api.example.com/data')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Error en la solicitud');
+          }
+          return response.json();
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error('Ocurrió un error:', error));
+        </code></pre>
+      </section>
+      
+      <section>
+        <h2>Mostrar datos en el DOM</h2>
+        <p>Ejemplo: renderizar productos usando fetch y forEach.</p>
+        <pre><code class="language-html" data-trim>
+      fetch('https://fakestoreapi.com/products')
+        .then(res => res.json())
+        .then(productos => {
+          const lista = document.getElementById('productos');
+          productos.forEach(producto => {
+            const item = document.createElement('li');
+            item.innerText = producto.title;
+            lista.appendChild(item);
+          });
+        });
+        </code></pre>
+      </section>
+      
+      <section>
+        <h2>Resumen de 2.3 – Consumo con fetch()</h2>
+        <ul>
+          <li  class="fragment"><code>fetch()</code> permite conectar el frontend con APIs externas o internas.</li>
+          <li  class="fragment">Se usa principalmente con los métodos <code>GET</code> y <code>POST</code>.</li>
+          <li  class="fragment">Devuelve promesas que deben manejarse con <code>.then()</code> y <code>.catch()</code>.</li>
+          <li  class="fragment">Es esencial para mostrar datos dinámicos en una aplicación web.</li>
+        </ul>
+      </section>
+      
+      
+
+      <!-- Cierre -->
+      <section>
+        <h2>✅ Resumen – Tema 2: JavaScript y Consumo de APIs</h2>
+        <ul>
+          <li  class="fragment"><strong>JavaScript</strong> es el lenguaje que permite añadir interactividad a los sitios web.</li>
+          <li  class="fragment">Se ejecuta en el navegador del usuario y manipula el DOM con funciones, eventos y variables.</li>
+          <li  class="fragment">Una <strong>API REST</strong> permite intercambiar datos entre cliente y servidor usando rutas y métodos HTTP.</li>
+          <li  class="fragment"><strong>JSON</strong> es el formato más común para transmitir datos en APIs.</li>
+          <li  class="fragment">La función <code>fetch()</code> permite hacer solicitudes HTTP desde el frontend.</li>
+          <li  class="fragment">Con <code>fetch()</code> puedes obtener o enviar información, manejar respuestas y mostrar los datos dinámicamente.</li>
+          <li  class="fragment">Estos conceptos son la base para conectar el frontend con servicios reales.</li>
+        </ul>
+      </section>
+      
+      
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'fade'
+    });
+  </script>
+</body>
+</html>

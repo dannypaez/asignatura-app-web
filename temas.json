@@ -1,0 +1,41 @@
+[
+  {
+    "tema_num": "1",
+    "tema_titulo": "Fundamentos de la Web",
+    "actividades": [
+    ],
+    "link_entrega": "https://forms.gle/entrega-tema1"
+  },
+  {
+    "tema_num": "2",
+    "tema_titulo": "JavaScript y Consumo de APIs",
+    "actividades": [
+      
+    ],
+    "link_entrega": "https://forms.gle/entrega-tema2"
+  },
+  {
+    "tema_num": "3",
+    "tema_titulo": "Introducción a Laravel",
+    "actividades": [
+      
+    ],
+    "link_entrega": "https://forms.gle/entrega-tema3"
+  },
+  {
+    "tema_num": "4",
+    "tema_titulo": "Creación de APIs REST con Laravel",
+    "actividades": [
+     
+    ],
+    "link_entrega": "https://forms.gle/entrega-tema4"
+  },
+  {
+    "tema_num": "5",
+    "tema_titulo": "Firebase y AWS",
+    "actividades": [
+     
+    ],
+    "link_entrega": "https://forms.gle/entrega-tema5"
+  }
+]

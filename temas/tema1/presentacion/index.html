@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tema 1 – Fundamentos de la Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.25em;
+        }
+
+        p,
+        li {
+            font-size: 0.70em;
+        }
+
+        pre code {
+            font-size: 0.85em;
+            background: #2d2d2d;
+            color: #eee;
+            padding: 1em;
+            display: block;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Portada -->
+            <section>
+                <h1>Tema 1</h1>
+                <p>Fundamentos de la Web</p>
+                <p class="text-sm">Aplicaciones Web – Ing. Danny Páez</p>
+            </section>
+
+            <!-- 1.1 Introducción a las aplicaciones web -->
+            <section>
+                <h2>¿Qué es una aplicación web?</h2>
+                <ul>
+                    <li class="fragment">Es un tipo de software que se ejecuta en un servidor y se accede a través de un
+                        navegador web.</li>
+                    <li class="fragment">No necesita instalarse en el dispositivo del usuario.</li>
+                    <li class="fragment">Permite a los usuarios interactuar con interfaces gráficas desde cualquier
+                        lugar con conexión a Internet.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ejemplos comunes de aplicaciones web</h2>
+                <div style="display: flex; align-items: center; gap: 2rem;">
+
+                    <div style="flex: 1;">
+                        <img src="../../imagenes/facebook_2504903.png" alt="HTML5"
+                            style="max-width: 75%; border-radius: 8px;">
+                    </div>
+
+                    <div style="flex: 1;">
+                        <ul>
+                            <li class="fragment">Gmail, Outlook Web – correo electrónico</li>
+                            <li class="fragment">Facebook, Instagram Web – redes sociales</li>
+                            <li class="fragment">Google Drive – almacenamiento en la nube</li>
+                            <li class="fragment">Netflix – transmisión de video</li>
+                            <li class="fragment">Tiendas online como Amazon, MercadoLibre</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Componentes principales</h2>
+                <ul>
+                    <li class="fragment"><strong>Cliente (frontend):</strong> lo que ve y usa el usuario (HTML, CSS,
+                        JS).</li>
+                    <li class="fragment"><strong>Servidor (backend):</strong> donde se procesa la lógica y se accede a
+                        la base de datos.</li>
+                    <li class="fragment"><strong>Base de datos:</strong> almacena la información de manera estructurada.
+                    </li>
+                </ul>
+            </section>
+
+
+            <section>
+                <h2>Frontend</h2>
+                <p>Es la parte visible de la aplicación. Incluye:</p>
+                <ul>
+                    <li class="fragment">La estructura (HTML)</li>
+                    <li class="fragment">El diseño visual (CSS, Tailwind)</li>
+                    <li class="fragment">La interactividad (JavaScript)</li>
+                </ul>
+                <p>El código del frontend se ejecuta en el navegador del usuario.</p>
+            </section>
+
+
+            <section>
+                <h2>Backend</h2>
+                <p>Es la lógica que corre en el servidor.</p>
+                <ul>
+                    <li class="fragment">Procesa peticiones del usuario.</li>
+                    <li class="fragment">Interactúa con la base de datos.</li>
+                    <li class="fragment">Entrega respuestas al cliente en formato JSON o HTML.</li>
+                </ul>
+                <p>Se programa con lenguajes como PHP (Laravel), Node.js, Python (Django), etc.</p>
+            </section>
+
+            <section>
+                <h2>Flujo de datos</h2>
+                <p>¿Qué sucede cuando haces clic en \"Iniciar sesión\"?</p>
+                <ol>
+                    <li class="fragment">El navegador envía los datos al servidor (usuario, contraseña).</li>
+                    <li class="fragment">El backend verifica en la base de datos si son correctos.</li>
+                    <li class="fragment">El servidor responde con una página o mensaje.</li>
+                </ol>
+                <p>Este ciclo se repite constantemente en cualquier interacción.</p>
+            </section>
+
+            <section>
+                <h2>Esquema de funcionamiento</h2>
+                <img src="../../imagenes/flujoDatos.png" alt="Flujo de datos entre cliente y servidor"
+                    style="max-height: 400px;">
+            </section>
+
+            <section>
+                <h2>Resumen de la sección</h2>
+                <ul>
+                    <li class="fragment">Una aplicación web es software que se accede desde un navegador.</li>
+                    <li class="fragment">Está compuesta por frontend, backend y base de datos.</li>
+                    <li class="fragment">El flujo de datos conecta las acciones del usuario con respuestas del servidor.
+                    </li>
+                </ul>
+            </section>
+
+
+            <!-- 1.2 HTML: lenguaje de marcado -->
+            <section>
+                <h2></h2>
+
+
+            </section>
+
+
+            <section>
+                <h2>¿Qué es HTML?</h2>
+                <div style="display: flex; align-items: center; gap: 2rem;">
+
+                    <!-- Imagen a la izquierda -->
+                    <div style="flex: 1;">
+                        <img src="../../imagenes/html-5.png" alt="HTML5" style="max-width: 100%; border-radius: 8px;">
+                    </div>
+
+                    <!-- Texto a la derecha -->
+                    <div style="flex: 1;">
+                        <p><strong>HTML</strong> significa <em>HyperText Markup Language</em>, es el lenguaje que
+                            estructura el contenido de una página web.</p>
+                        <ul>
+                            <li class="fragment">Define títulos, párrafos, enlaces, imágenes, formularios, etc.</li>
+                            <li class="fragment">Es interpretado por el navegador para mostrar el contenido visualmente.
+                            </li>
+                            <li class="fragment">No es un lenguaje de programación, es un lenguaje de marcado.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <section>
+                <h2>Estructura básica de una página HTML</h2>
+                <pre><code class="language-html" data-trim>
+      &lt;!DOCTYPE html&gt;
+      &lt;html&gt;
+        &lt;head&gt;
+          &lt;title&gt;Mi Sitio&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;h1&gt;Bienvenido&lt;/h1&gt;
+          &lt;p&gt;Esta es mi primera página web.&lt;/p&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>¿Qué significa cada parte?</h2>
+                <ul>
+                    <li class="fragment"><code>&lt;!DOCTYPE html&gt;</code> indica al navegador que es un documento
+                        HTML5.</li>
+                    <li class="fragment"><code>&lt;html&gt;</code> es el contenedor raíz de toda la página.</li>
+                    <li class="fragment"><code>&lt;head&gt;</code> contiene metadatos (título, estilos, scripts).</li>
+                    <li class="fragment"><code>&lt;body&gt;</code> contiene todo lo visible por el usuario.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Etiquetas semánticas comunes</h2>
+                <ul>
+                    <li class="fragment"><code>&lt;header&gt;</code>: encabezado del sitio o sección</li>
+                    <li class="fragment"><code>&lt;main&gt;</code>: contenido principal</li>
+                    <li class="fragment"><code>&lt;section&gt;</code>: grupo temático de contenido</li>
+                    <li class="fragment"><code>&lt;article&gt;</code>: contenido independiente (como una noticia)</li>
+                    <li class="fragment"><code>&lt;footer&gt;</code>: pie de página</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Otras etiquetas importantes</h2>
+                <ul>
+                    <li class="fragment"><code>&lt;h1&gt; ... &lt;h6&gt;</code>: encabezados</li>
+                    <li class="fragment"><code>&lt;p&gt;</code>: párrafos</li>
+                    <li class="fragment"><code>&lt;img&gt;</code>: imágenes</li>
+                    <li class="fragment"><code>&lt;a&gt;</code>: enlaces</li>
+                    <li class="fragment"><code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code>: listas</li>
+                    <li class="fragment"><code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>,
+                        <code>&lt;button&gt;</code>: formularios
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ejemplo con varias etiquetas</h2>
+                <pre><code class="language-html" data-trim>
+      &lt;h1&gt;Contacto&lt;/h1&gt;
+      &lt;p&gt;Escríbenos usando el siguiente formulario:&lt;/p&gt;
+      
+      &lt;form&gt;
+        &lt;label&gt;Nombre:&lt;/label&gt;
+        &lt;input type=\"text\" name=\"nombre\" /&gt;
+      
+        &lt;label&gt;Mensaje:&lt;/label&gt;
+        &lt;textarea name=\"mensaje\"&gt;&lt;/textarea&gt;
+      
+        &lt;button type=\"submit\"&gt;Enviar&lt;/button&gt;
+      &lt;/form&gt;
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>Buenas prácticas con HTML</h2>
+                <ul>
+                    <li class="fragment">Usar indentación para mantener el código legible.</li>
+                    <li class="fragment">Incluir etiquetas semánticas para accesibilidad y SEO.</li>
+                    <li class="fragment">Validar el HTML con herramientas como <a href="https://validator.w3.org/"
+                            target="_blank">W3C Validator</a>.</li>
+                    <li class="fragment">Agregar el atributo <code>alt</code> en imágenes.</li>
+                </ul>
+            </section>
+
+            <!-- 1.3 CSS y Tailwind -->
+            <section>
+                <h2>¿Qué es CSS?</h2>
+                <div style="display: flex; align-items: center; gap: 2rem;">
+
+
+                    <div style="flex: 1;">
+                        <img src="../../imagenes/CSS3.png" alt="HTML5" style="max-width: 70%; border-radius: 8px;">
+                    </div>
+
+                    <div style="flex: 1;">
+                        <p><strong>CSS</strong> significa <em>Cascading Style Sheets</em> y se usa para definir la
+                            apariencia de
+                            un sitio web.</p>
+                        <ul>
+                            <li class="fragment">Permite aplicar estilos a las etiquetas HTML.</li>
+                            <li class="fragment">Controla colores, tamaños, márgenes, fuentes, posiciones, etc.</li>
+                            <li class="fragment">Se puede aplicar de forma interna, externa o en línea.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section>
+                <h2>Ejemplo de CSS interno</h2>
+                <pre><code class="language-html" data-trim>
+      &lt;style&gt;
+        body {
+          background-color: #f0f0f0;
+          font-family: Arial, sans-serif;
+        }
+      
+        h1 {
+          color: blue;
+        }
+      &lt;/style&gt;
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>Modelo de caja (Box Model)</h2>
+                <ul>
+                    <li class="fragment">Todo elemento HTML se representa como una caja rectangular.</li>
+                    <li class="fragment">Estas cajas están compuestas por: <strong>content</strong>,
+                        <strong>padding</strong>, <strong>border</strong> y <strong>margin</strong>.
+                    </li>
+                </ul>
+                <img src="../../imagenes/box_model.png" alt="Modelo de Caja" style="max-height: 400px;">
+            </section>
+
+            <section>
+
+
+                <h2>¿Qué es Tailwind CSS?</h2>
+                <div style="display: flex; align-items: center; gap: 2rem;">
+
+
+                    <div style="flex: 1;">
+                        <img src="../../imagenes/Tailwind_CSS_Logo.png" alt="HTML5" style="max-width: 70%; border-radius: 8px;">
+                    </div>
+
+                    <div style="flex: 1;">
+                        <ul>
+                            <li class="fragment">Es un framework de CSS basado en clases utilitarias.</li>
+                            <li class="fragment">Permite escribir estilos directamente en el HTML.</li>
+                            <li class="fragment">Ideal para desarrollo rápido y diseño responsivo.</li>
+                            <li class="fragment">No necesita crear clases personalizadas (aunque se puede).</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section>
+                <h2>Ejemplo de botón con Tailwind</h2>
+                <pre><code class="language-html" data-trim>
+      &lt;button class=\"bg-blue-500 text-white px-4 py-2 rounded\"&gt;
+        Enviar
+      &lt;/button&gt;
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>Diseño responsivo con Tailwind</h2>
+                <ul>
+                    <li class="fragment">Utiliza modificadores como <code>sm:</code>, <code>md:</code>, <code>lg:</code>
+                        para diferentes tamaños de pantalla.</li>
+                    <li class="fragment">Ejemplo: <code>sm:text-lg md:text-xl</code></li>
+                    <li class="fragment">Permite ocultar o mostrar elementos dependiendo del dispositivo.</li>
+                </ul>
+
+
+            </section>
+
+            <section>
+                <h2>Grid layout en Tailwind</h2>
+                <pre><code class="language-html" data-trim>
+      &lt;div class=\"grid grid-cols-2 gap-4\"&gt;
+        &lt;div class=\"bg-gray-200 p-4\"&gt;Columna 1&lt;/div&gt;
+        &lt;div class=\"bg-gray-300 p-4\"&gt;Columna 2&lt;/div&gt;
+      &lt;/div&gt;
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>CSS tradicional vs Tailwind</h2>
+                <ul>
+                    <li class="fragment"><strong>CSS tradicional:</strong> requiere escribir reglas separadas en un
+                        archivo .css</li>
+                    <li class="fragment"><strong>Tailwind:</strong> aplica estilos como clases directamente en el HTML
+                    </li>
+                </ul>
+                <p>Ambos métodos son válidos. Tailwind acelera el desarrollo visual.</p>
+            </section>
+
+
+            <section>
+                <h2>Buenas prácticas con Tailwind</h2>
+                <ul>
+                    <li class="fragment">Usa clases semánticas: <code>text-center</code>, <code>bg-red-500</code>, etc.
+                    </li>
+                    <li class="fragment">Evita escribir clases duplicadas sin necesidad.</li>
+                    <li class="fragment">Aprovecha la documentación oficial: <a href="https://tailwindcss.com/docs"
+                            target=\"_blank\">tailwindcss.com</a></li>
+                </ul>
+            </section>
+
+
+            <!-- Cierre -->
+            <section>
+                <h2>✅ Resumen: Fundamentos de la Web</h2>
+                <ul>
+                    <li class="fragment">Una <strong>aplicación web</strong> es un sistema accesible desde el navegador,
+                        compuesto por cliente, servidor y base de datos.</li>
+                    <li class="fragment">El <strong>frontend</strong> muestra la interfaz del usuario (HTML, CSS, JS), y
+                        el <strong>backend</strong> procesa la lógica y datos.</li>
+                    <li class="fragment"><strong>HTML</strong> define la estructura de las páginas web usando etiquetas
+                        semánticas.</li>
+                    <li class="fragment"><strong>CSS</strong> estiliza los elementos, permitiendo controlar colores,
+                        márgenes, posiciones, etc.</li>
+                    <li class="fragment"><strong>Tailwind CSS</strong> es un framework moderno que permite aplicar
+                        estilos directamente desde clases utilitarias en el HTML.</li>
+                    <li class="fragment">El <strong>diseño responsivo</strong> asegura que la web se vea bien en
+                        distintos dispositivos (móviles, tablets, PCs).</li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            transition: 'convex'
+        });
+    </script>
+</body>
+
+</html>

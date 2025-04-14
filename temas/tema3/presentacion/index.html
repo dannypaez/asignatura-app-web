@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tema 1 – Fundamentos de la Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h2 { color: #fff; font-size: 1.25em; }
+        p, li { font-size: 0.70em; }
+        pre code {
+          font-size: 0.85em;
+          background: #2d2d2d;
+          color: #eee;
+          padding: 1em;
+          display: block;
+          border-radius: 8px;
+        }
+      </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Portada -->
+            <section>
+                <h1>Tema 3</h1>
+                <p>Introducción a Laravel</p>
+                <p class="text-sm">Aplicaciones Web – Ing. Danny Páez</p>
+            </section>
+
+            <!-- 3.1. Arquitectura MVC  -->
+
+            <section>
+                <h2>¿Qué es Laravel?</h2>
+                <ul>
+                    <li  class="fragment">Framework de desarrollo web escrito en PHP.</li>
+                    <li  class="fragment">Utiliza el patrón de diseño <strong>MVC</strong> para estructurar las aplicaciones.</li>
+                    <li  class="fragment">Facilita la creación de aplicaciones modernas de forma rápida y organizada.</li>
+                    <li  class="fragment">Incluye herramientas para autenticación, bases de datos, APIs y más.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>¿Qué es MVC?</h2>
+                <p>MVC significa <strong>Modelo – Vista – Controlador</strong>.</p>
+                <ul>
+                    <li  class="fragment"><strong>Modelo (Model):</strong> representa los datos y la lógica de negocio.</li>
+                    <li  class="fragment"><strong>Vista (View):</strong> lo que el usuario ve e interactúa (interfaz).</li>
+                    <li  class="fragment"><strong>Controlador (Controller):</strong> coordina la solicitud del usuario, consulta los datos
+                        y devuelve una respuesta.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Flujo básico MVC</h2>
+                <ol>
+                    <li  class="fragment">El usuario hace una solicitud (por ejemplo, visitar una URL).</li>
+                    <li  class="fragment">Laravel verifica si la ruta existe en <code>routes/web.php</code>.</li>
+                    <li  class="fragment">La ruta invoca un <strong>controlador</strong>.</li>
+                    <li  class="fragment">El controlador puede interactuar con el <strong>modelo</strong> (base de datos).</li>
+                    <li  class="fragment">El controlador devuelve una <strong>vista</strong> al usuario.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Ejemplo del flujo en Laravel</h2>
+                <img src="imagenes/mvc-laravel-flujo.png" alt="Flujo MVC en Laravel" style="max-height: 420px;">
+                <p style="font-size: 0.8em;">*Ruta → Controlador → Modelo → Vista</p>
+            </section>
+
+            <section>
+                <h2>Ventajas del patrón MVC</h2>
+                <ul>
+                    <li  class="fragment"><strong>Separación de responsabilidades:</strong> cada parte del sistema tiene su función.</li>
+                    <li  class="fragment"><strong>Mantenibilidad:</strong> es más fácil leer y modificar el código.</li>
+                    <li  class="fragment"><strong>Reutilización:</strong> puedes usar vistas o modelos en diferentes partes.</li>
+                    <li  class="fragment"><strong>Escalabilidad:</strong> ideal para proyectos grandes y colaborativos.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Resumen – Arquitectura MVC</h2>
+                <ul>
+                    <li  class="fragment">Laravel estructura sus aplicaciones usando el patrón MVC.</li>
+                    <li  class="fragment">El <strong>modelo</strong> representa los datos, la <strong>vista</strong> la interfaz y el
+                        <strong>controlador</strong> la lógica de flujo.
+                    </li>
+                    <li  class="fragment">Esta arquitectura mejora la claridad, la organización y la escalabilidad del proyecto.</li>
+                    <li  class="fragment">Es el punto de partida para construir rutas, APIs, autenticación y más.</li>
+                </ul>
+            </section>
+
+            <!-- 3.2. Estructura de un proyecto Laravel -->
+
+            <section>
+                <h2>Estructura de Laravel</h2>
+                <p>Laravel organiza el proyecto en carpetas con responsabilidades claras:</p>
+                <ul>
+                    <li  class="fragment"><code>/routes/</code>: define las rutas web y API</li>
+                    <li  class="fragment"><code>/app/Models/</code>: modelos de base de datos</li>
+                    <li  class="fragment"><code>/app/Http/Controllers/</code>: lógica de cada módulo</li>
+                    <li  class="fragment"><code>/resources/views/</code>: vistas en Blade</li>
+                    <li  class="fragment"><code>/database/migrations/</code>: definiciones de tablas</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Rutas: <code>web.php</code> vs <code>api.php</code></h2>
+                <ul>
+                    <li  class="fragment"><code>routes/web.php</code>: rutas que devuelven vistas Blade</li>
+                    <li  class="fragment"><code>routes/api.php</code>: rutas que devuelven JSON para APIs</li>
+                </ul>
+                <pre><code class="language-html" data-trim>
+      // web.php
+      Route::get('/productos', [ProductoController::class, 'index']);
+      
+      // api.php
+      Route::get('/api/productos', [ProductoApiController::class, 'index']);
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>Controladores</h2>
+                <p>Controlan la lógica de la aplicación.</p>
+                <ul>
+                    <li  class="fragment">Se ubican en <code>app/Http/Controllers/</code></li>
+                    <li  class="fragment">Se crean con Artisan: <code>php artisan make:controller</code></li>
+                    <li  class="fragment">Ejemplo básico:</li>
+                </ul>
+                <pre><code class="language-html" data-trim>
+      class ProductoController extends Controller {
+        public function index() {
+          $productos = Producto::all();
+          return view('productos.index', compact('productos'));
+        }
+      }
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>Modelos y Migraciones</h2>
+                <ul>
+                    <li  class="fragment"><strong>Modelo:</strong> representa una tabla de la base de datos</li>
+                    <li  class="fragment"><strong>Migración:</strong> crea o modifica la estructura de la tabla</li>
+                </ul>
+                <p>Ejemplo: crear modelo + migración</p>
+                <pre><code class="language-html" data-trim>
+      php artisan make:model Producto -m
+        </code></pre>
+                <p>Editar migración en <code>/database/migrations</code> y ejecutar:</p>
+                <pre><code class="language-html" data-trim>
+      php artisan migrate
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>Vistas con Blade</h2>
+                <p>Blade es el motor de plantillas de Laravel:</p>
+                <ul>
+                    <li  class="fragment">Permite insertar variables, condicionales, ciclos, etc.</li>
+                    <li  class="fragment">Se ubican en <code>/resources/views</code></li>
+                </ul>
+                <pre><code class="language-html" data-trim>
+      &lt;h1&gt;Lista de productos&lt;/h1&gt;
+      
+      &lt;ul&gt;
+        @foreach ($productos as $p)
+          &lt;li&gt;{{ $p-&gt;nombre }}&lt;/li&gt;
+        @endforeach
+      &lt;/ul&gt;
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>Layouts en Blade</h2>
+                <ul>
+                    <li  class="fragment">Usa <code>@extends</code> y <code>@section</code> para reutilizar estructura HTML</li>
+                    <li  class="fragment">Ejemplo de una vista que extiende un layout:</li>
+                </ul>
+                <pre><code class="language-html" data-trim>
+      @extends('layouts.app')
+      
+      @section('content')
+        &lt;h1&gt;Bienvenido&lt;/h1&gt;
+        &lt;p&gt;Este es el catálogo de productos.&lt;/p&gt;
+      @endsection
+        </code></pre>
+            </section>
+
+            <section>
+                <h2>Resumen – Estructura de Laravel</h2>
+                <ul>
+                    <li  class="fragment">Laravel organiza el código en carpetas según su función.</li>
+                    <li  class="fragment">Las rutas conectan solicitudes con controladores.</li>
+                    <li  class="fragment">Los controladores gestionan la lógica, los modelos los datos.</li>
+                    <li  class="fragment">Las migraciones crean la estructura de la base de datos.</li>
+                    <li  class="fragment">Las vistas Blade permiten mostrar contenido dinámico al usuario.</li>
+                </ul>
+            </section>
+
+            <!-- 3.3. Autenticación y roles básicos-->
+
+            <section>
+                <h2>Laravel Breeze</h2>
+                <ul>
+                    <li  class="fragment">Breeze es un sistema de autenticación simple y liviano para Laravel.</li>
+                    <li  class="fragment">Proporciona: registro, login, logout, verificación de email y vistas básicas con Blade.</li>
+                    <li  class="fragment">Requiere instalación por separado vía Composer.</li>
+                </ul>
+                <pre><code class="language-html" data-trim>
+              composer require laravel/breeze --dev
+              php artisan breeze:install
+              npm install && npm run dev
+              php artisan migrate
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Middleware <code>auth</code></h2>
+                <p>Laravel incluye un middleware llamado <code>auth</code> para proteger rutas.</p>
+                <ul>
+                    <li  class="fragment">Evita el acceso a rutas si el usuario no ha iniciado sesión.</li>
+                    <li  class="fragment">Se puede aplicar directamente o en grupo.</li>
+                </ul>
+                <pre><code class="language-html" data-trim>
+              // Ruta protegida
+              Route::middleware(['auth'])->group(function () {
+                Route::get('/dashboard', [DashboardController::class, 'index']);
+              });
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Blade: Verificar autenticación</h2>
+                <ul>
+                    <li  class="fragment">Usa <code>@auth</code> y <code>@guest</code> para mostrar contenido según el estado de login.
+                    </li>
+                </ul>
+                <pre><code class="language-html" data-trim>
+              @auth
+                &lt;p&gt;Hola, {{ Auth::user()->name }}&lt;/p&gt;
+              @endauth
+              
+              @guest
+                &lt;a href=\"/login\"&gt;Iniciar sesión&lt;/a&gt;
+              @endguest
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Manejo básico de roles</h2>
+                <ul>
+                    <li  class="fragment">Agrega una columna <code>role</code> a la tabla de usuarios.</li>
+                    <li  class="fragment">Define roles como: <code>admin</code>, <code>cliente</code>, <code>moderador</code>.</li>
+                    <li  class="fragment">Controla accesos según el rol del usuario.</li>
+                </ul>
+                <pre><code class="language-html" data-trim>
+              // En una migración
+              $table->string('role')->default('cliente');
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Verificar el rol en Blade</h2>
+                <p>Usa condicionales para mostrar contenido exclusivo por rol.</p>
+                <pre><code class="language-html" data-trim>
+              @if(Auth::user()->role === 'admin')
+                &lt;a href=\"/admin\"&gt;Panel de Administración&lt;/a&gt;
+              @endif
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Middleware personalizado para roles</h2>
+                <p>Para proteger rutas más robustamente, puedes crear un middleware:</p>
+                <pre><code class="language-html" data-trim>
+              php artisan make:middleware RoleMiddleware
+                </code></pre>
+                <p>Ejemplo de verificación en el middleware:</p>
+                <pre><code class="language-html" data-trim>
+              if (Auth::check() && Auth::user()->role !== 'admin') {
+                  return redirect('/');
+              }
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Resumen – Autenticación y roles</h2>
+                <ul>
+                    <li  class="fragment">Breeze facilita la instalación rápida de login y registro.</li>
+                    <li  class="fragment">El middleware <code>auth</code> protege rutas para usuarios autenticados.</li>
+                    <li  class="fragment">Blade permite mostrar u ocultar contenido según el estado de sesión.</li>
+                    <li  class="fragment">Con una columna <code>role</code> puedes implementar niveles de acceso.</li>
+                </ul>
+            </section>
+
+            <!-- Cierre -->
+            <section>
+                <h2>✅ Resumen – Tema 3: Introducción a Laravel</h2>
+                <ul>
+                  <li  class="fragment"><strong>Laravel</strong> es un framework PHP que facilita el desarrollo web moderno.</li>
+                  <li  class="fragment">Utiliza el patrón <strong>MVC</strong> para separar la lógica de negocio, la presentación y el flujo de control.</li>
+                  <li  class="fragment">El código se organiza en carpetas: rutas, controladores, modelos, vistas y migraciones.</li>
+                  <li  class="fragment">Las rutas pueden ser web (vistas) o API (respuestas en JSON).</li>
+                  <li  class="fragment">Laravel Breeze permite añadir autenticación de forma rápida y sencilla.</li>
+                  <li  class="fragment">Usando middleware y Blade, se puede proteger contenido y gestionar roles básicos.</li>
+                  <li  class="fragment">Este conocimiento sienta las bases para crear APIs REST y conectar el frontend con el backend.</li>
+                </ul>
+              </section>              
+
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            transition: 'fade'
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tema 1 – Fundamentos de la Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css">
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+      h2 { color: #fff; font-size: 1.25em; }
+      p, li { font-size: 0.70em; }
+      pre code {
+        font-size: 0.85em;
+        background: #2d2d2d;
+        color: #eee;
+        padding: 1em;
+        display: block;
+        border-radius: 8px;
+      }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Portada -->
+            <section>
+                <h1>Tema 5</h1>
+                <p>Firebase y AWS</p>
+                <p class="text-sm">Aplicaciones Web – Ing. Danny Páez</p>
+            </section>
+
+            <!-- 5.1. Introducción a Firebase -->
+
+            <section>
+              <h2>¿Qué es Firebase?</h2>
+              <ul>
+                <li  class="fragment">Plataforma de Google para el desarrollo de apps web y móviles.</li>
+                <li  class="fragment">Incluye base de datos, autenticación, hosting, funciones y más.</li>
+                <li  class="fragment">Ideal para prototipos, proyectos pequeños y aplicaciones en tiempo real.</li>
+                <li  class="fragment">Cuenta con capa gratuita para empezar sin costo.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>Firestore: base de datos en tiempo real</h2>
+              <ul>
+                <li  class="fragment">Base de datos NoSQL basada en documentos (no tablas relacionales).</li>
+                <li  class="fragment">Cada documento es una colección de pares clave-valor.</li>
+                <li  class="fragment">Los datos se sincronizan en tiempo real con el cliente.</li>
+                <li  class="fragment">Ideal para guardar formularios, mensajes, datos temporales, etc.</li>
+              </ul>
+            </section>
+            
+            <section>
+              <h2>Ejemplo de documento en Firestore</h2>
+              <pre><code class="language-html" data-trim>
+            {
+              "nombre": "Danny",
+              "producto": "Laptop",
+              "fecha": "2025-04-11"
+            }
+              </code></pre>
+              <p>Firestore guarda esta información como un documento dentro de una colección (por ejemplo: <code>solicitudes</code>).</p>
+            </section>
+            
+            <section>
+              <h2>Guardar datos en Firestore (JavaScript)</h2>
+              <pre><code class="language-html" data-trim>
+            import { getFirestore, collection, addDoc } from \"firebase/firestore\";
+            const db = getFirestore();
+            
+            addDoc(collection(db, \"solicitudes\"), {
+              nombre: \"Danny\",
+              producto: \"Tablet\",
+              mensaje: \"¿Tiene stock?\"
+            });
+              </code></pre>
+              <p>Recuerda inicializar Firebase y configurar el proyecto antes de usar Firestore.</p>
+            </section>
+            
+            <section>
+              <h2>Firebase Authentication</h2>
+              <ul>
+                <li  class="fragment">Permite autenticar usuarios con correo electrónico, Google, Facebook, etc.</li>
+                <li  class="fragment">Fácil de implementar con el SDK de Firebase.</li>
+                <li  class="fragment">Se puede usar para proteger áreas privadas o asociar datos a un usuario.</li>
+              </ul>
+              <pre><code class="language-html" data-trim>
+            import { getAuth, signInWithEmailAndPassword } from \"firebase/auth\";
+            const auth = getAuth();
+            
+            signInWithEmailAndPassword(auth, email, password)
+              .then(user => console.log(user.user.email));
+              </code></pre>
+            </section>
+            
+            <section>
+              <h2>Firebase Hosting</h2>
+              <ul>
+                <li  class="fragment">Servicio gratuito para desplegar páginas web estáticas (HTML, CSS, JS).</li>
+                <li  class="fragment">Ideal para mostrar tu frontend, incluyendo catálogos o formularios.</li>
+                <li  class="fragment">Incluye HTTPS, cache, y dominio <code>.web.app</code>.</li>
+              </ul>
+            </section>
+            
+            <section>
+              <h2>Pasos para publicar con Firebase Hosting</h2>
+              <ol>
+                <li  class="fragment"><code>npm install -g firebase-tools</code></li>
+                <li  class="fragment"><code>firebase login</code></li>
+                <li  class="fragment"><code>firebase init hosting</code></li>
+                <li  class="fragment"><code>firebase deploy</code></li>
+              </ol>
+              <p>Tu app estará disponible en <code>https://tu-proyecto.web.app</code></p>
+            </section>
+            
+            <section>
+              <h2>Resumen – Firebase</h2>
+              <ul>
+                <li  class="fragment"><strong>Firestore:</strong> base de datos NoSQL ideal para datos en tiempo real.</li>
+                <li  class="fragment"><strong>Authentication:</strong> permite login de usuarios con varios proveedores.</li>
+                <li  class="fragment"><strong>Hosting:</strong> despliegue rápido y seguro para tu frontend.</li>
+                <li  class="fragment">Firebase facilita el desarrollo rápido de apps completas sin necesidad de servidor propio.</li>
+              </ul>
+            </section>            
+            
+              
+
+            <!-- 5.2. Introducción a AWS -->
+
+            <section>
+              <h2>¿Qué es AWS?</h2>
+              <ul>
+                <li  class="fragment"><strong>Amazon Web Services</strong> es una plataforma de servicios en la nube.</li>
+                <li  class="fragment">Permite crear infraestructura como servidores, bases de datos, almacenamiento, etc.</li>
+                <li  class="fragment">Ideal para desplegar aplicaciones reales en internet.</li>
+                <li  class="fragment">Ofrece una <strong>capa gratuita</strong> con varios servicios útiles por 12 meses.</li>
+              </ul>
+            </section>
+            
+            <section>
+              <h2>Servicios de AWS útiles</h2>
+              <ul>
+                <li  class="fragment"><strong>EC2:</strong> máquinas virtuales para alojar tu aplicación Laravel.</li>
+                <li  class="fragment"><strong>S3:</strong> almacenamiento de archivos (imágenes, documentos).</li>
+                <li  class="fragment"><strong>RDS:</strong> bases de datos relacionales (MySQL, PostgreSQL).</li>
+              </ul>
+              <p>Usaremos principalmente <strong>EC2</strong> para desplegar Laravel.</p>
+            </section>
+            
+            <section>
+              <h2>Pasos para crear una instancia EC2</h2>
+              <ol>
+                <li  class="fragment">Accede a la consola de AWS → EC2 → Lanzar instancia.</li>
+                <li  class="fragment">Selecciona <strong>Ubuntu Server 22.04</strong>.</li>
+                <li  class="fragment">Tipo de instancia: <code>t2.micro</code> (capa gratuita).</li>
+                <li  class="fragment">Genera una nueva clave SSH (<code>.pem</code>) para acceder.</li>
+                <li  class="fragment">Configura las reglas del firewall (puertos 22, 80, 443).</li>
+              </ol>
+            </section>
+            
+            <section>
+              <h2>Conectarse vía SSH</h2>
+              <p>Usa la terminal para conectarte a tu instancia:</p>
+              <pre><code class="language-html" data-trim>
+            chmod 400 mi-clave.pem
+            ssh -i \"mi-clave.pem\" ubuntu@IP-DE-LA-EC2
+              </code></pre>
+              <p>Una vez conectado, puedes instalar lo necesario para Laravel.</p>
+            </section>
+
+            <section>
+              <h2>Instalar Laravel en EC2</h2>
+              <ul>
+                <li  class="fragment">Instala PHP, Composer, MySQL y Git.</li>
+                <li  class="fragment">Clona tu repositorio Laravel:</li>
+              </ul>
+              <pre><code class="language-html" data-trim>
+            git clone https://github.com/usuario/proyecto-laravel.git
+            cd proyecto-laravel
+            composer install
+            cp .env.example .env
+            php artisan key:generate
+              </code></pre>
+              <p>Configura tu base de datos en el archivo <code>.env</code>.</p>
+            </section>
+
+            <section>
+              <h2>Servir Laravel (temporal o con Apache)</h2>
+              <p>Modo de prueba:</p>
+              <pre><code class="language-html" data-trim>
+            php artisan serve --host=0.0.0.0 --port=8000
+              </code></pre>
+              <p>Abre el puerto 8000 en el grupo de seguridad para verlo en el navegador.</p>
+              <p>Para producción, se recomienda configurar Apache o Nginx.</p>
+            </section>
+
+            <section>
+              <h2>Servir Laravel (temporal o con Apache)</h2>
+              <p>Modo de prueba:</p>
+              <pre><code class="language-html" data-trim>
+            php artisan serve --host=0.0.0.0 --port=8000
+              </code></pre>
+              <p>Abre el puerto 8000 en el grupo de seguridad para verlo en el navegador.</p>
+              <p>Para producción, se recomienda configurar Apache o Nginx.</p>
+            </section>
+
+            <section>
+              <h2>Resumen – AWS</h2>
+              <ul>
+                <li  class="fragment">AWS permite crear infraestructura escalable para tus proyectos.</li>
+                <li  class="fragment">EC2 se utiliza para desplegar Laravel y crear APIs en un servidor real.</li>
+                <li  class="fragment">Con SSH puedes conectarte y gestionar tu instancia como si fuera tu propio servidor.</li>
+                <li  class="fragment">Este conocimiento es útil para entornos profesionales y producción.</li>
+              </ul>
+            </section>            
+
+            <!-- Cierre -->
+
+            <section>
+              <h2>✅ Resumen – Tema 5: Firebase y AWS</h2>
+              <ul>
+                <li  class="fragment"><strong>Firebase</strong> es una plataforma de Google que facilita el desarrollo de aplicaciones web sin necesidad de configurar servidores.</li>
+                <li  class="fragment"><strong>Firestore</strong> permite guardar datos en tiempo real con una base de datos NoSQL.</li>
+                <li  class="fragment"><strong>Firebase Hosting</strong> permite publicar páginas web estáticas con dominio gratuito y HTTPS.</li>
+                <li  class="fragment"><strong>AWS</strong> (Amazon Web Services) ofrece infraestructura profesional en la nube con capa gratuita por 12 meses.</li>
+                <li  class="fragment">Con <strong>EC2</strong> puedes desplegar tu aplicación Laravel en un servidor real, accediendo por SSH.</li>
+                <li  class="fragment"><strong>S3</strong> permite almacenar archivos; <strong>RDS</strong> ofrece bases de datos como MySQL o PostgreSQL.</li>
+                <li  class="fragment">Firebase es ideal para prototipos rápidos; AWS es ideal para producción y control completo del backend.</li>
+              </ul>
+            </section>
+            
+          
+           
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            transition: 'fade'
+        });
+    </script>
+</body>
+
+</html>

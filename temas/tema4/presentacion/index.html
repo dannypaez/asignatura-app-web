@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tema 1 – Fundamentos de la Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h2 { color: #fff; font-size: 1.25em; }
+        p, li { font-size: 0.70em; }
+        pre code {
+          font-size: 0.85em;
+          background: #2d2d2d;
+          color: #eee;
+          padding: 1em;
+          display: block;
+          border-radius: 8px;
+        }
+      </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Portada -->
+            <section>
+                <h1>Tema 4</h1>
+                <p>Creación de APIs REST con Laravel</p>
+                <p class="text-sm">Aplicaciones Web – Ing. Danny Páez</p>
+            </section>
+
+            <!-- 4.1. Rutas y controladores API -->
+
+            <section>
+                <h2>¿Qué es una API REST en Laravel?</h2>
+                <ul>
+                  <li  class="fragment">Una API REST permite exponer y consumir datos usando el protocolo HTTP.</li>
+                  <li  class="fragment">En Laravel, las APIs se definen en <code>routes/api.php</code>.</li>
+                  <li  class="fragment">Devuelven datos en formato JSON en lugar de vistas Blade.</li>
+                  <li  class="fragment">Se conectan con controladores tipo API.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2>Definir rutas en api.php</h2>
+                <p>Laravel separa las rutas web de las rutas API.</p>
+                <pre><code class="language-html" data-trim>
+              // Obtener todos los productos
+              Route::get('/productos', [ProductoApiController::class, 'index']);
+              
+              // Obtener un solo producto
+              Route::get('/productos/{id}', [ProductoApiController::class, 'show']);
+                </code></pre>
+                <p>Estas rutas devuelven respuestas en JSON.</p>
+              </section>
+              
+              
+              <section>
+                <h2>Agrupar rutas con prefijo</h2>
+                <p>Puedes agrupar rutas por recurso o por autenticación:</p>
+                <pre><code class="language-html" data-trim>
+              Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
+                Route::get('/productos', [ProductoApiController::class, 'index']);
+              });
+                </code></pre>
+              </section>
+              
+              <section>
+                <h2>Controlador tipo API</h2>
+                <ul>
+                  <li  class="fragment">Laravel permite generar controladores con métodos REST automáticamente:</li>
+                </ul>
+                <pre><code class="language-html" data-trim>
+              php artisan make:controller ProductoApiController --api
+                </code></pre>
+                <p>Esto crea los métodos: <code>index</code>, <code>store</code>, <code>show</code>, <code>update</code>, <code>destroy</code>.</p>
+              </section>
+              
+              <section>
+                <h2>Método index() – devolver todos los productos</h2>
+                <pre><code class="language-html" data-trim>
+              public function index() {
+                $productos = Producto::all();
+                return response()->json($productos, 200);
+              }
+                </code></pre>
+                <p>El segundo parámetro indica el código de estado HTTP (200 OK).</p>
+              </section>
+              
+              <section>
+                <h2>Método show() – producto individual</h2>
+                <pre><code class="language-html" data-trim>
+              public function show($id) {
+                $producto = Producto::find($id);
+              
+                if (!$producto) {
+                  return response()->json(['mensaje' => 'No encontrado'], 404);
+                }
+              
+                return response()->json($producto);
+              }
+                </code></pre>
+              </section>
+              
+              <section>
+                <h2>API Resource – Estructura limpia</h2>
+                <p>Laravel permite personalizar la respuesta con:</p>
+                <pre><code class="language-html" data-trim>
+              php artisan make:resource ProductoResource
+                </code></pre>
+                <p>Ejemplo en <code>app/Http/Resources/ProductoResource.php</code>:</p>
+                <pre><code class="language-html" data-trim>
+              public function toArray($request) {
+                return [
+                  'id' => $this->id,
+                  'nombre' => $this->nombre,
+                  'precio' => $this->precio,
+                ];
+              }
+                </code></pre>
+              </section>
+              
+              <section>
+                <h2>Devolver un recurso</h2>
+                <pre><code class="language-html" data-trim>
+              use App\Http\Resources\ProductoResource;
+              
+              public function show($id) {
+                $producto = Producto::findOrFail($id);
+                return new ProductoResource($producto);
+              }
+                </code></pre>
+                <p>También se puede usar <code>ProductoResource::collection($productos)</code> en el método <code>index()</code>.</p>
+              </section>
+              
+              <section>
+                <h2>Resumen – Rutas y controladores API</h2>
+                <ul>
+                  <li  class="fragment">Las rutas API se definen en <code>routes/api.php</code>.</li>
+                  <li  class="fragment">Los controladores API devuelven datos en formato JSON.</li>
+                  <li  class="fragment">Laravel permite crear controladores REST automáticamente.</li>
+                  <li  class="fragment">Los recursos de API ayudan a estructurar las respuestas.</li>
+                </ul>
+              </section>              
+              
+
+            <!-- 4.2. Validación y manejo de errores -->
+
+            <section>
+                <h2>¿Por qué validar?</h2>
+                <ul>
+                  <li  class="fragment">Evita guardar datos incompletos, incorrectos o maliciosos.</li>
+                  <li  class="fragment">Protege la lógica de la aplicación y la base de datos.</li>
+                  <li  class="fragment">En APIs, una validación fallida debe retornar un error 422 con los mensajes correspondientes.</li>
+                </ul>
+              </section>
+              
+              <section>
+                <h2>Validación directa en el controlador</h2>
+                <pre><code class="language-html" data-trim>
+              public function store(Request $request) {
+                $validated = $request->validate([
+                  'nombre' => 'required|string|max:255',
+                  'precio' => 'required|numeric|min:0',
+                ]);
+              
+                // Crear producto con los datos validados
+                Producto::create($validated);
+              }
+                </code></pre>
+                <p>Laravel devuelve automáticamente errores si la validación falla.</p>
+              </section>
+              
+              <section>
+                <h2>Validación con Form Request</h2>
+                <p>Separar la validación en su propia clase mejora la organización.</p>
+                <pre><code class="language-html" data-trim>
+              php artisan make:request ProductoRequest
+                </code></pre>
+                <p>En <code>ProductoRequest</code> defines las reglas:</p>
+                <pre><code class="language-html" data-trim>
+              public function rules() {
+                return [
+                  'nombre' => 'required|string|max:255',
+                  'precio' => 'required|numeric|min:0',
+                ];
+              }
+                </code></pre>
+              </section>
+              
+              <section>
+                <h2>Usar Form Request en el controlador</h2>
+                <p>Se reemplaza <code>Request</code> por <code>ProductoRequest</code>:</p>
+                <pre><code class="language-html" data-trim>
+              public function store(ProductoRequest $request) {
+                Producto::create($request->validated());
+              }
+                </code></pre>
+                <p>Laravel maneja automáticamente la validación y la respuesta en caso de error.</p>
+              </section>
+              
+              <section>
+                <h2>Error 422 – Validación fallida</h2>
+                <p>Cuando la validación falla, Laravel devuelve una respuesta JSON así:</p>
+                <pre><code class="language-html" data-trim>
+              {
+                "message": "The given data was invalid.",
+                "errors": {
+                  "nombre": ["El campo nombre es obligatorio."]
+                }
+              }
+                </code></pre>
+              </section>
+              
+              <section>
+                <h2>Manejo de errores con try-catch</h2>
+                <p>Útil para capturar excepciones y devolver respuestas personalizadas:</p>
+                <pre><code class="language-html" data-trim>
+              public function show($id) {
+                try {
+                  $producto = Producto::findOrFail($id);
+                  return response()->json($producto);
+                } catch (\Exception $e) {
+                  return response()->json(['error' => 'Producto no encontrado'], 404);
+                }
+              }
+                </code></pre>
+              </section>
+              
+              <section>
+                <h2>Códigos de estado en APIs</h2>
+                <ul>
+                  <li  class="fragment"><code>200 OK</code>: solicitud exitosa</li>
+                  <li  class="fragment"><code>201 Created</code>: recurso creado correctamente</li>
+                  <li  class="fragment"><code>404 Not Found</code>: recurso no encontrado</li>
+                  <li  class="fragment"><code>422 Unprocessable Entity</code>: error de validación</li>
+                  <li  class="fragment"><code>500 Internal Server Error</code>: error inesperado</li>
+                </ul>
+              </section>
+              
+              <section>
+                <h2>Resumen – Validación y manejo de errores</h2>
+                <ul>
+                  <li  class="fragment">La validación garantiza que los datos enviados sean correctos.</li>
+                  <li  class="fragment">Puede hacerse directamente o usando clases <code>Form Request</code>.</li>
+                  <li  class="fragment">Laravel responde con error 422 si falla la validación.</li>
+                  <li  class="fragment">Con <code>try-catch</code> puedes capturar errores y retornar respuestas personalizadas.</li>
+                  <li  class="fragment">El uso correcto de códigos HTTP mejora la claridad de tu API.</li>
+                </ul>
+              </section>              
+
+
+            <!-- 4.3. Conexión cliente-API-->
+
+            <section>
+                <h2>¿Cómo conectar el frontend con la API?</h2>
+                <ul>
+                  <li  class="fragment">La API REST de Laravel devuelve datos en formato JSON.</li>
+                  <li  class="fragment">Desde el frontend (HTML + JS) puedes usar <code>fetch()</code> o <code>axios</code> para consumir los datos.</li>
+                  <li  class="fragment">El flujo es: <strong>frontend</strong> → <strong>solicitud HTTP</strong> → <strong>API Laravel</strong> → <strong>respuesta JSON</strong>.</li>
+                </ul>
+              </section>
+              
+              <section>
+                <h2>Consumir API con fetch()</h2>
+                <pre><code class="language-html" data-trim>
+              fetch('http://localhost:8000/api/productos')
+                .then(res => res.json())
+                .then(data => {
+                  console.log(data);
+                  // Puedes recorrer y mostrar en el DOM
+                })
+                .catch(error => {
+                  console.error('Error al conectar con la API:', error);
+                });
+                </code></pre>
+              </section>
+              
+              <section>
+                <h2>Mostrar productos en HTML</h2>
+                <pre><code class="language-html" data-trim>
+              const contenedor = document.getElementById('lista-productos');
+              
+              fetch('http://localhost:8000/api/productos')
+                .then(res => res.json())
+                .then(productos => {
+                  productos.forEach(p => {
+                    const item = document.createElement('div');
+                    item.innerHTML = `
+                      &lt;h3&gt;${p.nombre}&lt;/h3&gt;
+                      &lt;p&gt;Precio: $${p.precio}&lt;/p&gt;
+                    `;
+                    contenedor.appendChild(item);
+                  });
+                });
+                </code></pre>
+              </section>
+              
+              <section>
+                <h2>Reemplazar API externa por la propia</h2>
+                <ul>
+                  <li  class="fragment">Antes: usábamos <code>https://fakestoreapi.com</code></li>
+                  <li  class="fragment">Ahora: consumimos nuestra propia API Laravel en <code>http://localhost:8000/api/productos</code></li>
+                  <li  class="fragment">Esto nos da control total sobre los datos y el backend.</li>
+                </ul>
+              </section>
+              
+              <section>
+                <h2>Blade vs JavaScript + API</h2>
+                <ul>
+                  <li  class="fragment"><strong>Blade:</strong> renderiza el contenido desde el servidor antes de enviarlo al navegador.</li>
+                  <li  class="fragment"><strong>fetch() + API:</strong> renderiza en el navegador después de obtener los datos.</li>
+                  <li  class="fragment">Ideal para interfaces dinámicas como catálogos, filtros, y SPA.</li>
+                </ul>
+              </section>
+              
+              <section>
+                <h2>Enviar datos con fetch()</h2>
+                <pre><code class="language-html" data-trim>
+              fetch('http://localhost:8000/api/solicitudes', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  producto_id: 1,
+                  nombre: 'Danny',
+                  mensaje: 'Quisiera más información'
+                })
+              })
+              .then(res => res.json())
+              .then(data => {
+                alert('Solicitud enviada');
+              })
+              .catch(err => {
+                alert('Hubo un error');
+              });
+                </code></pre>
+              </section>
+              
+              <section>
+                <h2>Resumen – Conexión cliente-API</h2>
+                <ul>
+                  <li  class="fragment">El frontend puede comunicarse con el backend usando <code>fetch()</code>.</li>
+                  <li  class="fragment">Laravel responde con JSON que puedes mostrar dinámicamente en HTML.</li>
+                  <li  class="fragment">Reemplazar APIs externas por APIs propias te da mayor control.</li>
+                  <li  class="fragment">El enfoque con JavaScript permite construir interfaces modernas y reactivas.</li>
+                </ul>
+              </section>
+              
+
+
+            <!-- Cierre -->
+          
+            <section>
+                <h2>✅ Resumen – Tema 4: Creación de APIs REST</h2>
+                <ul>
+                  <li  class="fragment">Laravel permite construir APIs REST usando <code>routes/api.php</code> y controladores tipo API.</li>
+                  <li  class="fragment">Los controladores devuelven respuestas en formato <strong>JSON</strong> usando <code>response()->json()</code>.</li>
+                  <li  class="fragment">La validación puede hacerse directamente o usando <code>Form Request</code>.</li>
+                  <li  class="fragment">Errores comunes como datos inválidos o recursos no encontrados se manejan con códigos HTTP adecuados (422, 404, 500).</li>
+                  <li  class="fragment">Los <strong>API Resources</strong> ayudan a estructurar y controlar la salida JSON.</li>
+                  <li  class="fragment">El <strong>frontend</strong> puede consumir la API usando <code>fetch()</code> para mostrar, filtrar o enviar información.</li>
+                  <li  class="fragment">Este modelo desacopla la lógica del backend de la interfaz, permitiendo mayor flexibilidad.</li>
+                </ul>
+              </section>              
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            transition: 'fade'
+        });
+    </script>
+</body>
+
+</html>
