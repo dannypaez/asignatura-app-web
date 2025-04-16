@@ -10,40 +10,77 @@
     body { font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+<body class="bg-gradient-to-b from-blue-50 to-white text-gray-800 min-h-screen flex flex-col">
 
-  <header class="bg-white shadow-sm sticky top-0 z-10">
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div>
-        <h1 class="text-xl font-bold text-blue-700">Tema 4 – Creación de APIs REST con Laravel</h1>
-        <p class="text-sm text-gray-500">Curso: Aplicaciones Web – Ing. Danny Páez</p>
+      <div class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/swagger.svg" class="w-10 h-10" alt="Swagger"/>
+        <div>
+          <h1 class="text-xl font-extrabold text-blue-700">Tema 4 – Creación de APIs REST con Laravel</h1>
+          <p class="text-sm text-gray-500">Curso: Aplicaciones Web – Ing. Danny Páez</p>
+        </div>
       </div>
-      <a href="../../index.html" class="text-sm text-blue-600 underline hover:text-blue-800">Volver al inicio</a>
+      <a href="../../index.html" class="text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 transition font-semibold shadow">← Volver al inicio</a>
     </div>
   </header>
 
   <main class="max-w-4xl mx-auto w-full px-6 py-10 flex-grow">
+    <!-- Teoría -->
     <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-4">📚 Teoría</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li><a class="text-blue-600 underline" href="presentacion/index.html" target="_blank">Ver presentación</a></li>
+      <h2 class="text-2xl font-semibold mb-4 flex items-center gap-2">
+        <span class="inline-block bg-blue-100 text-blue-700 rounded-full p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+        </span>
+        📚 Teoría
+      </h2>
+      <ul class="list-disc list-inside space-y-2 bg-white rounded-lg shadow p-4">
+        <li>
+          <a class="text-blue-600 underline font-semibold hover:text-blue-800 transition" href="presentacion/index.html" target="_blank">
+            Ver presentación
+          </a>
+        </li>
       </ul>
     </section>
 
+    <!-- Actividades -->
     <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-4">🧪 Actividades</h2>
-      <ol class="list-decimal list-inside space-y-2">
-        
+      <h2 class="text-2xl font-semibold mb-4 flex items-center gap-2">
+        <span class="inline-block bg-yellow-100 text-yellow-700 rounded-full p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2a4 4 0 018 0v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </span>
+        🧪 Actividades
+      </h2>
+      <ol class="list-decimal list-inside space-y-2 bg-white rounded-lg shadow p-4">
+        <li class="text-gray-400">Sin actividades registradas</li>
       </ol>
     </section>
 
+    <!-- Entrega -->
     <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-4">📤 Entrega</h2>
-      <a href="https://forms.gle/entrega-tema4" target="_blank" class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Enviar actividad</a>
+      <h2 class="text-2xl font-semibold mb-4 flex items-center gap-2">
+        <span class="inline-block bg-green-100 text-green-700 rounded-full p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </span>
+        📤 Entrega
+      </h2>
+      <a href="https://forms.gle/entrega-tema4" target="_blank"
+        class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg font-semibold shadow hover:bg-green-700 transition">
+        Enviar actividad
+      </a>
     </section>
   </main>
 
-  <footer class="bg-white border-t">
+  <footer class="bg-white border-t shadow-inner">
     <div class="max-w-7xl mx-auto px-6 py-4 text-sm text-gray-500 text-center">
       © 2025 – Aplicaciones Web | Ing. Danny Páez
     </div>

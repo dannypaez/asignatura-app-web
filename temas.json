@@ -3,6 +3,10 @@
     "tema_num": "1",
     "tema_titulo": "Fundamentos de la Web",
     "actividades": [
+      "Creación de la estructura base del catálogo en HTML puro.",
+      "Aplicar CSS clásico mediante style",
+      "Aplicar Tailwind CSS para crear un diseño más limpio y responsivo",
+      "App con HTML, CSS y Tailwind"
     ],
     "link_entrega": "https://forms.gle/entrega-tema1"
   },
@@ -10,6 +14,10 @@
     "tema_num": "2",
     "tema_titulo": "JavaScript y Consumo de APIs",
     "actividades": [
+      "Crear un catálogo de productos utilizando JavaScript puro.",
+      "Consumir una API REST para obtener datos dinámicamente.",
+      "Implementar un sistema de búsqueda y filtrado en el catálogo.",
+      "App con HTML, CSS, JS y Tailwind"
       
     ],
     "link_entrega": "https://forms.gle/entrega-tema2"
