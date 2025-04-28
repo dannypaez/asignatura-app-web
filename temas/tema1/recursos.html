@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Principales Etiquetas HTML y Propiedades CSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 text-gray-800 p-6 font-sans">
+    <header>
+      <h1
+        class="text-3xl font-bold mb-10 flex items-center gap-3 text-blue-800"
+      >
+        <span class="inline-block bg-blue-100 text-blue-700 rounded-full p-2">
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+        </span>
+        Principales Etiquetas HTML y Propiedades CSS
+      </h1>
+    </header>
+
+    <section class="mb-16">
+      <h2
+        class="text-2xl font-semibold mb-6 flex items-center gap-2 text-gray-800"
+      >
+        <span class="inline-block bg-gray-200 text-gray-700 rounded-full p-2"
+          >📄</span
+        >
+        Tabla de Etiquetas HTML Principales
+      </h2>
+      <div class="overflow-x-auto rounded-lg shadow bg-white">
+        <table class="min-w-full divide-y divide-gray-200 text-sm">
+          <thead class="bg-blue-100 text-blue-700">
+            <tr>
+              <th class="py-3 px-6 text-left">Etiqueta</th>
+              <th class="py-3 px-6 text-left">Descripción</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4">
+                <code
+                  class="bg-gray-100 px-2 py-1 rounded text-pink-600 font-mono text-xs"
+                  >&lt;!DOCTYPE html&gt;</code
+                >
+              </td>
+              <td class="px-6 py-4">Define el tipo de documento como HTML5.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;html&gt;</code></td>
+              <td class="px-6 py-4">Elemento raíz de una página web.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;head&gt;</code></td>
+              <td class="px-6 py-4">
+                Contiene metadatos e información del documento.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;title&gt;</code></td>
+              <td class="px-6 py-4">
+                Título de la página que aparece en la pestaña del navegador.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;meta&gt;</code></td>
+              <td class="px-6 py-4">
+                Información adicional como codificación o descripción SEO.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;link&gt;</code></td>
+              <td class="px-6 py-4">
+                Enlaza archivos externos (por ejemplo, CSS).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;script&gt;</code></td>
+              <td class="px-6 py-4">Agrega o enlaza código JavaScript.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;body&gt;</code></td>
+              <td class="px-6 py-4">
+                Contiene todo el contenido visible de la página.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;h1&gt; a &lt;h6&gt;</code></td>
+              <td class="px-6 py-4">
+                Encabezados de diferentes niveles de importancia.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;p&gt;</code></td>
+              <td class="px-6 py-4">Define un párrafo de texto.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;a&gt;</code></td>
+              <td class="px-6 py-4">Define un enlace o hipervínculo.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;img&gt;</code></td>
+              <td class="px-6 py-4">Inserta una imagen.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;div&gt;</code></td>
+              <td class="px-6 py-4">Contenedor genérico en bloque.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;span&gt;</code></td>
+              <td class="px-6 py-4">Contenedor genérico en línea.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;section&gt;</code></td>
+              <td class="px-6 py-4">
+                Agrupa contenido relacionado en una página.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;article&gt;</code></td>
+              <td class="px-6 py-4">
+                Contenido independiente o autosuficiente.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;header&gt;</code></td>
+              <td class="px-6 py-4">Encabezado de una sección o página.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;footer&gt;</code></td>
+              <td class="px-6 py-4">Pie de página o final de una sección.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;nav&gt;</code></td>
+              <td class="px-6 py-4">Contiene enlaces de navegación.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;main&gt;</code></td>
+              <td class="px-6 py-4">Contenido principal de la página.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;ul&gt;</code></td>
+              <td class="px-6 py-4">Lista desordenada.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;ol&gt;</code></td>
+              <td class="px-6 py-4">Lista ordenada.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;li&gt;</code></td>
+              <td class="px-6 py-4">Elemento de una lista.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;form&gt;</code></td>
+              <td class="px-6 py-4">Contenedor de un formulario.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;input&gt;</code></td>
+              <td class="px-6 py-4">Campo de entrada de datos.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;textarea&gt;</code></td>
+              <td class="px-6 py-4">Campo de texto de varias líneas.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;button&gt;</code></td>
+              <td class="px-6 py-4">Botón interactivo.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;select&gt;</code></td>
+              <td class="px-6 py-4">Menú desplegable.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;option&gt;</code></td>
+              <td class="px-6 py-4">Opción dentro de un &lt;select&gt;.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;label&gt;</code></td>
+              <td class="px-6 py-4">
+                Etiqueta para un elemento de formulario.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;br&gt;</code></td>
+              <td class="px-6 py-4">Salto de línea.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;hr&gt;</code></td>
+              <td class="px-6 py-4">Línea horizontal divisora.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;strong&gt;</code></td>
+              <td class="px-6 py-4">
+                Texto enfatizado (semánticamente fuerte).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;em&gt;</code></td>
+              <td class="px-6 py-4">Texto enfatizado (énfasis en voz).</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>&lt;blockquote&gt;</code></td>
+              <td class="px-6 py-4">Cita en bloque.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2
+        class="text-2xl font-semibold mb-6 flex items-center gap-2 text-gray-800"
+      >
+        <span class="inline-block bg-gray-200 text-gray-700 rounded-full p-2"
+          >🎨</span
+        >
+        Tabla de Propiedades CSS Principales
+      </h2>
+      <div class="overflow-x-auto rounded-lg shadow bg-white">
+        <table class="min-w-full divide-y divide-gray-200 text-sm">
+          <thead class="bg-purple-100 text-purple-700">
+            <tr>
+              <th class="py-3 px-6 text-left">Propiedad</th>
+              <th class="py-3 px-6 text-left">Descripción</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>margin</code></td>
+              <td class="px-6 py-4">
+                Espacio exterior alrededor del elemento.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>padding</code></td>
+              <td class="px-6 py-4">
+                Espacio interior entre el contenido y el borde.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>border</code></td>
+              <td class="px-6 py-4">Borde alrededor del elemento.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>width</code></td>
+              <td class="px-6 py-4">Ancho del elemento.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>height</code></td>
+              <td class="px-6 py-4">Alto del elemento.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>box-sizing</code></td>
+              <td class="px-6 py-4">
+                Cómo se calculan el ancho y el alto (border-box o content-box).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>background-color</code></td>
+              <td class="px-6 py-4">Color de fondo del elemento.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>color</code></td>
+              <td class="px-6 py-4">Color del texto.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>font-family</code></td>
+              <td class="px-6 py-4">Familia tipográfica del texto.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>font-size</code></td>
+              <td class="px-6 py-4">Tamaño de la fuente.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>font-weight</code></td>
+              <td class="px-6 py-4">Grosor del texto.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>text-align</code></td>
+              <td class="px-6 py-4">
+                Alineación del texto (izquierda, centro, derecha).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>text-decoration</code></td>
+              <td class="px-6 py-4">
+                Decoración del texto (por ejemplo, subrayado).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>line-height</code></td>
+              <td class="px-6 py-4">
+                Altura de línea (espaciado vertical entre líneas de texto).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>letter-spacing</code></td>
+              <td class="px-6 py-4">Espaciado entre letras.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>display</code></td>
+              <td class="px-6 py-4">
+                Cómo se muestra un elemento (block, inline, flex, etc.).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>position</code></td>
+              <td class="px-6 py-4">
+                Posicionamiento (static, relative, absolute, fixed, sticky).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>top, right, bottom, left</code></td>
+              <td class="px-6 py-4">Coordenadas para posicionar elementos.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>z-index</code></td>
+              <td class="px-6 py-4">
+                Orden de apilamiento (qué elemento se ve encima).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>overflow</code></td>
+              <td class="px-6 py-4">
+                Manejo del contenido que desborda el contenedor.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>border-radius</code></td>
+              <td class="px-6 py-4">Bordes redondeados.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>box-shadow</code></td>
+              <td class="px-6 py-4">Sombra para los elementos.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>transition</code></td>
+              <td class="px-6 py-4">
+                Efectos de transición suave en cambios de estado.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>cursor</code></td>
+              <td class="px-6 py-4">
+                Tipo de cursor del mouse al pasar sobre el elemento.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>visibility</code></td>
+              <td class="px-6 py-4">
+                Visibilidad del elemento (visible, hidden).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>opacity</code></td>
+              <td class="px-6 py-4">Transparencia del elemento.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>flex-direction</code></td>
+              <td class="px-6 py-4">
+                Dirección de los elementos en un contenedor flex (row, column).
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>justify-content</code></td>
+              <td class="px-6 py-4">
+                Alineación horizontal de los elementos en flexbox.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>align-items</code></td>
+              <td class="px-6 py-4">
+                Alineación vertical de los elementos en flexbox.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>gap</code></td>
+              <td class="px-6 py-4">
+                Espacio entre elementos hijos en flexbox o grid.
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>max-width</code></td>
+              <td class="px-6 py-4">Ancho máximo permitido.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>min-width</code></td>
+              <td class="px-6 py-4">Ancho mínimo permitido.</td>
+            </tr>
+            <tr class="hover:bg-gray-100 transition">
+              <td class="px-6 py-4"><code>@media</code></td>
+              <td class="px-6 py-4">
+                Media Queries: aplica estilos según el tamaño de pantalla o
+                dispositivo.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="mt-12 text-center text-sm text-gray-400">
+      © 2025 – Aplicaciones Web | Ing. Danny Páez
+    </footer>
+  </body>
+</html>
