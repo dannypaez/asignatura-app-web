@@ -566,6 +566,211 @@
         </section>
 
         <section>
+          <h2>¿Qué es Flexbox?</h2>
+          <ul>
+            <li class="fragment">Es un modelo de diseño flexible en CSS.</li>
+            <li class="fragment">
+              Permite distribuir el espacio entre elementos de forma dinámica.
+            </li>
+            <li class="fragment">
+              Ideal para crear diseños adaptativos y alineaciones rápidas.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Activar Flexbox</h2>
+          <pre><code class="language-css" data-trim>
+.contenedor {
+  display: flex;
+}
+  </code></pre>
+          <p style="font-size: 0.7em">
+            El contenedor se convierte en "flex container" y sus hijos en "flex
+            items".
+          </p>
+        </section>
+
+        <section>
+          <h2>Propiedad: justify-content</h2>
+          <ul>
+            <li class="fragment">
+              <code>flex-start</code>: alinea elementos a la izquierda.
+            </li>
+            <li class="fragment">
+              <code>center</code>: centra los elementos horizontalmente.
+            </li>
+            <li class="fragment">
+              <code>flex-end</code>: alinea elementos a la derecha.
+            </li>
+            <li class="fragment">
+              <code>space-between</code>: espacio entre los elementos.
+            </li>
+            <li class="fragment">
+              <code>space-around</code>: espacio antes, entre y después de los
+              elementos.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Propiedad: align-items</h2>
+          <ul>
+            <li class="fragment">
+              <code>stretch</code>: ajusta la altura para llenar el contenedor
+              (por defecto).
+            </li>
+            <li class="fragment"><code>flex-start</code>: alinea arriba.</li>
+            <li class="fragment">
+              <code>center</code>: alinea al centro verticalmente.
+            </li>
+            <li class="fragment"><code>flex-end</code>: alinea abajo.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Propiedad: flex-wrap</h2>
+          <ul>
+            <li class="fragment">
+              Por defecto, los ítems se quedan en una sola línea.
+            </li>
+            <li class="fragment">
+              Con <code>flex-wrap: wrap</code> permitimos que pasen a otra línea
+              si es necesario.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Propiedad: gap</h2>
+          <ul>
+            <li class="fragment">Agrega espacio entre los elementos hijos.</li>
+            <li class="fragment">Funciona en ejes horizontal y vertical.</li>
+          </ul>
+          <pre><code class="language-css" data-trim>
+.contenedor {
+  display: flex;
+  gap: 1rem;
+}
+  </code></pre>
+        </section>
+
+        <section>
+          <h2>Resumen de Flexbox</h2>
+          <ul>
+            <li class="fragment">
+              Flexbox es una forma eficiente de organizar y alinear contenido.
+            </li>
+            <li class="fragment">
+              Propiedades clave: <code>display: flex</code>,
+              <code>justify-content</code>, <code>align-items</code>,
+              <code>flex-wrap</code>, <code>gap</code>.
+            </li>
+            <li class="fragment">
+              Tailwind usa clases basadas en estos conceptos: <code>flex</code>,
+              <code>justify-center</code>, <code>items-center</code>,
+              <code>gap-4</code>.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>¿Qué es el diseño responsivo?</h2>
+          <ul>
+            <li class="fragment">
+              Adaptar la página a diferentes tamaños de pantalla.
+            </li>
+            <li class="fragment">
+              Optimizar la experiencia en móviles, tablets y PCs.
+            </li>
+            <li class="fragment">
+              Evitar el "scroll" horizontal y mejorar la legibilidad.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>¿Qué es un media query?</h2>
+          <p>
+            Un media query aplica reglas CSS solo si se cumple una condición en
+            el tamaño de pantalla.
+          </p>
+          <pre><code class="language-css" data-trim>
+@media (max-width: 768px) {
+  body {
+    background-color: lightblue;
+  }
+}
+  </code></pre>
+        </section>
+
+        <section>
+          <h2>¿Qué es Mobile First?</h2>
+          <ul>
+            <li class="fragment">
+              Diseñar pensando primero en dispositivos móviles.
+            </li>
+            <li class="fragment">
+              Luego adaptarse a pantallas más grandes usando media queries.
+            </li>
+            <li class="fragment">
+              Es la filosofía que usa Tailwind (ej: <code>md:</code>,
+              <code>lg:</code>).
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Ejemplo: Mobile First</h2>
+          <pre><code class="language-css" data-trim>
+p {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  p {
+    font-size: 18px;
+  }
+}
+  </code></pre>
+          <p style="font-size: 0.7em">
+            Primero el estilo para móviles, luego para pantallas mayores.
+          </p>
+        </section>
+
+        <section>
+          <h2>¿Qué podemos cambiar con media queries?</h2>
+          <ul>
+            <li class="fragment">
+              Tamaños de fuente (<code>font-size</code>).
+            </li>
+            <li class="fragment">
+              Espaciados (<code>margin</code>, <code>padding</code>).
+            </li>
+            <li class="fragment">
+              Layout: cambiar de fila a columna en Flexbox.
+            </li>
+            <li class="fragment">Mostrar u ocultar elementos.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Resumen de Responsivo</h2>
+          <ul>
+            <li class="fragment">
+              Media queries permiten adaptar el sitio a distintos dispositivos.
+            </li>
+            <li class="fragment">
+              Mobile First es la estrategia moderna más usada.
+            </li>
+            <li class="fragment">
+              Tailwind simplifica esto con clases como <code>sm:</code>,
+              <code>md:</code>, <code>lg:</code>.
+            </li>
+          </ul>
+        </section>
+
+        <section>
           <h2>¿Qué es Tailwind CSS?</h2>
           <div style="display: flex; align-items: center; gap: 2rem">
             <div style="flex: 1">
