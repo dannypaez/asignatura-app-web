@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Guía Completa de Clases Tailwind CSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 text-gray-800 p-6 font-sans">
+    <header>
+      <h1
+        class="text-3xl font-bold mb-10 flex items-center gap-3 text-blue-800"
+      >
+        <span class="inline-block bg-blue-100 text-blue-700 rounded-full p-2">
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 20h9M12 4v16m8-8H4"
+            />
+          </svg>
+        </span>
+        Guía Académica Extendida de Clases Utilitarias en Tailwind CSS
+      </h1>
+    </header>
+
+    <section>
+      <div class="overflow-x-auto rounded-lg shadow bg-white">
+        <table class="min-w-full divide-y divide-gray-200 text-sm">
+          <thead class="bg-blue-100 text-blue-700">
+            <tr>
+              <th class="py-3 px-6 text-left">Categoría</th>
+              <th class="py-3 px-6 text-left">Clases</th>
+              <th class="py-3 px-6 text-left">Descripción académica</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <!-- Espaciado -->
+            <tr>
+              <td class="px-6 py-4">Espaciado: Margin</td>
+              <td class="px-6 py-4">m-0 a m-96, mx-4, my-8</td>
+              <td class="px-6 py-4">
+                Define espacio externo (margen) alrededor de un elemento.
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4">Espaciado: Padding</td>
+              <td class="px-6 py-4">p-0 a p-96, px-4, py-8</td>
+              <td class="px-6 py-4">
+                Define espacio interno (relleno) dentro de un elemento.
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4">Espaciado: Gap</td>
+              <td class="px-6 py-4">gap-0 a gap-96</td>
+              <td class="px-6 py-4">
+                Define espacio entre elementos hijos en Flexbox o Grid.
+              </td>
+            </tr>
+
+            <!-- Tamaños -->
+            <tr>
+              <td class="px-6 py-4">Tamaños: Width</td>
+              <td class="px-6 py-4">w-0 a w-96, w-full</td>
+              <td class="px-6 py-4">Define el ancho de un elemento.</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4">Tamaños: Height</td>
+              <td class="px-6 py-4">h-0 a h-96, h-screen</td>
+              <td class="px-6 py-4">Define la altura de un elemento.</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4">Tamaños: Min/Max</td>
+              <td class="px-6 py-4">
+                min-w-0 a min-w-full, max-h-0 a max-h-full
+              </td>
+              <td class="px-6 py-4">
+                Establece límites mínimos y máximos para ancho y alto.
+              </td>
+            </tr>
+
+            <!-- Tipografía -->
+            <tr>
+              <td class="px-6 py-4">Tipografía</td>
+              <td class="px-6 py-4">
+                text-xs a text-9xl, font-thin a font-black, italic, underline,
+                uppercase, tracking-wide
+              </td>
+              <td class="px-6 py-4">
+                Modifica tamaño, peso, estilo, decoración y espaciado de texto.
+              </td>
+            </tr>
+
+            <!-- Colores -->
+            <tr>
+              <td class="px-6 py-4">Colores</td>
+              <td class="px-6 py-4">
+                text-red-700, bg-blue-500, border-green-300, bg-opacity-0 a
+                bg-opacity-100
+              </td>
+              <td class="px-6 py-4">
+                Asigna colores y niveles de opacidad a fondo, texto o bordes.
+              </td>
+            </tr>
+
+            <!-- Bordes -->
+            <tr>
+              <td class="px-6 py-4">Bordes</td>
+              <td class="px-6 py-4">
+                border, border-2 a border-8, border-t, border-none, rounded,
+                rounded-lg, rounded-full
+              </td>
+              <td class="px-6 py-4">
+                Define grosor, presencia y redondeado de los bordes.
+              </td>
+            </tr>
+
+            <!-- Layout -->
+            <tr>
+              <td class="px-6 py-4">Layout</td>
+              <td class="px-6 py-4">
+                block, inline-block, inline, hidden, container, box-border,
+                box-content
+              </td>
+              <td class="px-6 py-4">
+                Controla el comportamiento y tamaño del contenedor o elemento.
+              </td>
+            </tr>
+
+            <!-- Flexbox y Grid -->
+            <tr>
+              <td class="px-6 py-4">Flexbox</td>
+              <td class="px-6 py-4">
+                flex, flex-row, flex-col, justify-center, items-center,
+                flex-wrap
+              </td>
+              <td class="px-6 py-4">
+                Permite diseños flexibles y alineación de elementos.
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4">Grid</td>
+              <td class="px-6 py-4">
+                grid, grid-cols-1 a grid-cols-12, gap-x-4, gap-y-2
+              </td>
+              <td class="px-6 py-4">
+                Crea sistemas de diseño basados en cuadrículas.
+              </td>
+            </tr>
+
+            <!-- Posicionamiento -->
+            <tr>
+              <td class="px-6 py-4">Posicionamiento</td>
+              <td class="px-6 py-4">
+                relative, absolute, fixed, sticky, top-0 a top-full, inset-0
+              </td>
+              <td class="px-6 py-4">
+                Define cómo se ubica un elemento respecto a su contenedor.
+              </td>
+            </tr>
+
+            <!-- Sombras y Opacidad -->
+            <tr>
+              <td class="px-6 py-4">Sombras y Opacidad</td>
+              <td class="px-6 py-4">
+                shadow-sm a shadow-2xl, opacity-0 a opacity-100
+              </td>
+              <td class="px-6 py-4">
+                Agrega profundidad visual o controla transparencia.
+              </td>
+            </tr>
+
+            <!-- Animaciones y Transiciones -->
+            <tr>
+              <td class="px-6 py-4">Transiciones</td>
+              <td class="px-6 py-4">
+                transition, duration-75 a duration-1000, ease-linear,
+                ease-in-out
+              </td>
+              <td class="px-6 py-4">
+                Aplica efectos de suavizado al cambiar estilos.
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4">Animaciones</td>
+              <td class="px-6 py-4">
+                animate-bounce, animate-spin, animate-ping, animate-pulse
+              </td>
+              <td class="px-6 py-4">
+                Aplica animaciones predefinidas de movimiento o transformación.
+              </td>
+            </tr>
+
+            <!-- Estado y Pseudo Clases -->
+            <tr>
+              <td class="px-6 py-4">Estado</td>
+              <td class="px-6 py-4">
+                hover:bg-blue-500, focus:outline-none, active:bg-red-500,
+                disabled:opacity-50
+              </td>
+              <td class="px-6 py-4">
+                Aplica estilos cuando el usuario interactúa con un elemento.
+              </td>
+            </tr>
+
+            <!-- Visibilidad -->
+            <tr>
+              <td class="px-6 py-4">Visibilidad y Display</td>
+              <td class="px-6 py-4">
+                hidden, block, inline, visible, invisible
+              </td>
+              <td class="px-6 py-4">
+                Muestra u oculta elementos o cambia su tipo de display.
+              </td>
+            </tr>
+
+            <!-- Interactividad -->
+            <tr>
+              <td class="px-6 py-4">Interactividad</td>
+              <td class="px-6 py-4">
+                cursor-pointer, pointer-events-none, select-none
+              </td>
+              <td class="px-6 py-4">
+                Controla interacción de puntero y selección de texto.
+              </td>
+            </tr>
+
+            <!-- Orden y Overflow -->
+            <tr>
+              <td class="px-6 py-4">Orden y Overflow</td>
+              <td class="px-6 py-4">
+                z-0 a z-50, overflow-hidden, overflow-auto, overflow-scroll
+              </td>
+              <td class="px-6 py-4">
+                Define el orden de apilamiento y cómo manejar desbordes de
+                contenido.
+              </td>
+            </tr>
+
+            <!-- Misceláneas -->
+            <tr>
+              <td class="px-6 py-4">Misceláneas</td>
+              <td class="px-6 py-4">
+                aspect-ratio, isolate, mix-blend-mode, backdrop-blur
+              </td>
+              <td class="px-6 py-4">
+                Clases avanzadas para controlar relaciones de aspecto, capas y
+                efectos visuales.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="mt-12 text-center text-sm text-gray-400">
+      © 2025 – Aplicaciones Web | Ing. Danny Páez
+    </footer>
+  </body>
+</html>
